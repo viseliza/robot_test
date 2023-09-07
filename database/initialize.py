@@ -92,3 +92,13 @@ class Group:
             cur.execute(f'''
                 DELETE FROM `groups` WHERE `name` = {name} LIMIT 1;
             ''')
+            
+    async def exists(name: str):
+        # Пытаемся найти пользователя
+        exists = await Group.get(name)
+
+        # Debug лог
+        logging.debug(f'UserExists: Group={name}, Exists={bool(exists)}')
+
+        # Возврат ответа
+        return exists
